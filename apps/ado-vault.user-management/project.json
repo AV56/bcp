@@ -1,0 +1,121 @@
+{
+  "name": "ado-vault.user-management",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "application",
+  "sourceRoot": "apps/ado-vault.user-management/src",
+  "prefix": "ado-bcp-ui",
+  "targets": {
+    "build": {
+      "executor": "@nrwl/angular:webpack-browser",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/apps/ado-vault.user-management",
+        "index": "apps/ado-vault.user-management/src/index.html",
+        "main": "apps/ado-vault.user-management/src/main.ts",
+        "polyfills": "apps/ado-vault.user-management/src/polyfills.ts",
+        "tsConfig": "apps/ado-vault.user-management/tsconfig.app.json",
+        "inlineStyleLanguage": "scss",
+        "assets": [
+          "apps/ado-vault.user-management/src/favicon.ico",
+          "apps/ado-vault.user-management/src/assets"
+        ],
+        "styles": ["apps/ado-vault.user-management/src/styles.scss"],
+        "scripts": [],
+        "customWebpackConfig": {
+          "path": "apps/ado-vault.user-management/webpack.config.js"
+        }
+      },
+      "configurations": {
+        "production": {
+          "budgets": [
+            {
+              "type": "initial",
+              "maximumWarning": "500kb",
+              "maximumError": "1mb"
+            },
+            {
+              "type": "anyComponentStyle",
+              "maximumWarning": "2kb",
+              "maximumError": "4kb"
+            }
+          ],
+          "fileReplacements": [
+            {
+              "replace": "apps/ado-vault.user-management/src/environments/environment.ts",
+              "with": "apps/ado-vault.user-management/src/environments/environment.prod.ts"
+            }
+          ],
+          "outputHashing": "all",
+          "customWebpackConfig": {
+            "path": "apps/ado-vault.user-management/webpack.prod.config.js"
+          }
+        },
+        "development": {
+          "buildOptimizer": false,
+          "optimization": false,
+          "vendorChunk": true,
+          "extractLicenses": false,
+          "sourceMap": true,
+          "namedChunks": true
+        }
+      },
+      "defaultConfiguration": "production"
+    },
+    "serve": {
+      "executor": "@nrwl/angular:webpack-dev-server",
+      "configurations": {
+        "production": {
+          "browserTarget": "ado-vault.user-management:build:production"
+        },
+        "development": {
+          "browserTarget": "ado-vault.user-management:build:development"
+        }
+      },
+      "defaultConfiguration": "development",
+      "options": {
+        "port": 4205,
+        "publicHost": "http://localhost:4205"
+      }
+    },
+    "extract-i18n": {
+      "executor": "@angular-devkit/build-angular:extract-i18n",
+      "options": {
+        "browserTarget": "ado-vault.user-management:build"
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "options": {
+        "lintFilePatterns": [
+          "apps/ado-vault.user-management/**/*.ts",
+          "apps/ado-vault.user-management/**/*.html"
+        ]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+      "options": {
+        "jestConfig": "apps/ado-vault.user-management/jest.config.ts",
+        "passWithNoTests": true
+      }
+    },
+    "serve-static": {
+      "executor": "@nrwl/angular:file-server",
+      "defaultConfiguration": "development",
+      "options": {
+        "buildTarget": "ado-vault.user-management:build",
+        "port": 4205
+      },
+      "configurations": {
+        "development": {
+          "buildTarget": "ado-vault.user-management:build:development"
+        },
+        "production": {
+          "buildTarget": "ado-vault.user-management:build:production"
+        }
+      }
+    }
+  },
+  "tags": []
+}

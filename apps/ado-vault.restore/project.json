@@ -1,0 +1,121 @@
+{
+  "name": "ado-vault.restore",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "application",
+  "sourceRoot": "apps/ado-vault.restore/src",
+  "prefix": "ado-bcp-ui",
+  "targets": {
+    "build": {
+      "executor": "@nrwl/angular:webpack-browser",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/apps/ado-vault.restore",
+        "index": "apps/ado-vault.restore/src/index.html",
+        "main": "apps/ado-vault.restore/src/main.ts",
+        "polyfills": "apps/ado-vault.restore/src/polyfills.ts",
+        "tsConfig": "apps/ado-vault.restore/tsconfig.app.json",
+        "inlineStyleLanguage": "scss",
+        "assets": [
+          "apps/ado-vault.restore/src/favicon.ico",
+          "apps/ado-vault.restore/src/assets"
+        ],
+        "styles": ["apps/ado-vault.restore/src/styles.scss"],
+        "scripts": [],
+        "customWebpackConfig": {
+          "path": "apps/ado-vault.restore/webpack.config.js"
+        }
+      },
+      "configurations": {
+        "production": {
+          "budgets": [
+            {
+              "type": "initial",
+              "maximumWarning": "500kb",
+              "maximumError": "1mb"
+            },
+            {
+              "type": "anyComponentStyle",
+              "maximumWarning": "2kb",
+              "maximumError": "4kb"
+            }
+          ],
+          "fileReplacements": [
+            {
+              "replace": "apps/ado-vault.restore/src/environments/environment.ts",
+              "with": "apps/ado-vault.restore/src/environments/environment.prod.ts"
+            }
+          ],
+          "outputHashing": "all",
+          "customWebpackConfig": {
+            "path": "apps/ado-vault.restore/webpack.prod.config.js"
+          }
+        },
+        "development": {
+          "buildOptimizer": false,
+          "optimization": false,
+          "vendorChunk": true,
+          "extractLicenses": false,
+          "sourceMap": true,
+          "namedChunks": true
+        }
+      },
+      "defaultConfiguration": "production"
+    },
+    "serve": {
+      "executor": "@nrwl/angular:webpack-dev-server",
+      "configurations": {
+        "production": {
+          "browserTarget": "ado-vault.restore:build:production"
+        },
+        "development": {
+          "browserTarget": "ado-vault.restore:build:development"
+        }
+      },
+      "defaultConfiguration": "development",
+      "options": {
+        "port": 4207,
+        "publicHost": "http://localhost:4207"
+      }
+    },
+    "extract-i18n": {
+      "executor": "@angular-devkit/build-angular:extract-i18n",
+      "options": {
+        "browserTarget": "ado-vault.restore:build"
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "options": {
+        "lintFilePatterns": [
+          "apps/ado-vault.restore/**/*.ts",
+          "apps/ado-vault.restore/**/*.html"
+        ]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+      "options": {
+        "jestConfig": "apps/ado-vault.restore/jest.config.ts",
+        "passWithNoTests": true
+      }
+    },
+    "serve-static": {
+      "executor": "@nrwl/angular:file-server",
+      "defaultConfiguration": "development",
+      "options": {
+        "buildTarget": "ado-vault.restore:build",
+        "port": 4207
+      },
+      "configurations": {
+        "development": {
+          "buildTarget": "ado-vault.restore:build:development"
+        },
+        "production": {
+          "buildTarget": "ado-vault.restore:build:production"
+        }
+      }
+    }
+  },
+  "tags": []
+}

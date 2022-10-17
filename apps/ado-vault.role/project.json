@@ -1,0 +1,121 @@
+{
+  "name": "ado-vault.role",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "application",
+  "sourceRoot": "apps/ado-vault.role/src",
+  "prefix": "ado-bcp-ui",
+  "targets": {
+    "build": {
+      "executor": "@nrwl/angular:webpack-browser",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/apps/ado-vault.role",
+        "index": "apps/ado-vault.role/src/index.html",
+        "main": "apps/ado-vault.role/src/main.ts",
+        "polyfills": "apps/ado-vault.role/src/polyfills.ts",
+        "tsConfig": "apps/ado-vault.role/tsconfig.app.json",
+        "inlineStyleLanguage": "scss",
+        "assets": [
+          "apps/ado-vault.role/src/favicon.ico",
+          "apps/ado-vault.role/src/assets"
+        ],
+        "styles": ["apps/ado-vault.role/src/styles.scss"],
+        "scripts": [],
+        "customWebpackConfig": {
+          "path": "apps/ado-vault.role/webpack.config.js"
+        }
+      },
+      "configurations": {
+        "production": {
+          "budgets": [
+            {
+              "type": "initial",
+              "maximumWarning": "500kb",
+              "maximumError": "1mb"
+            },
+            {
+              "type": "anyComponentStyle",
+              "maximumWarning": "2kb",
+              "maximumError": "4kb"
+            }
+          ],
+          "fileReplacements": [
+            {
+              "replace": "apps/ado-vault.role/src/environments/environment.ts",
+              "with": "apps/ado-vault.role/src/environments/environment.prod.ts"
+            }
+          ],
+          "outputHashing": "all",
+          "customWebpackConfig": {
+            "path": "apps/ado-vault.role/webpack.prod.config.js"
+          }
+        },
+        "development": {
+          "buildOptimizer": false,
+          "optimization": false,
+          "vendorChunk": true,
+          "extractLicenses": false,
+          "sourceMap": true,
+          "namedChunks": true
+        }
+      },
+      "defaultConfiguration": "production"
+    },
+    "serve": {
+      "executor": "@nrwl/angular:webpack-dev-server",
+      "configurations": {
+        "production": {
+          "browserTarget": "ado-vault.role:build:production"
+        },
+        "development": {
+          "browserTarget": "ado-vault.role:build:development"
+        }
+      },
+      "defaultConfiguration": "development",
+      "options": {
+        "port": 4208,
+        "publicHost": "http://localhost:4208"
+      }
+    },
+    "extract-i18n": {
+      "executor": "@angular-devkit/build-angular:extract-i18n",
+      "options": {
+        "browserTarget": "ado-vault.role:build"
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "options": {
+        "lintFilePatterns": [
+          "apps/ado-vault.role/**/*.ts",
+          "apps/ado-vault.role/**/*.html"
+        ]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+      "options": {
+        "jestConfig": "apps/ado-vault.role/jest.config.ts",
+        "passWithNoTests": true
+      }
+    },
+    "serve-static": {
+      "executor": "@nrwl/angular:file-server",
+      "defaultConfiguration": "development",
+      "options": {
+        "buildTarget": "ado-vault.role:build",
+        "port": 4208
+      },
+      "configurations": {
+        "development": {
+          "buildTarget": "ado-vault.role:build:development"
+        },
+        "production": {
+          "buildTarget": "ado-vault.role:build:production"
+        }
+      }
+    }
+  },
+  "tags": []
+}

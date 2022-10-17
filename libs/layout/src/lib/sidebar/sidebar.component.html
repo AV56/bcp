@@ -1,0 +1,59 @@
+<aside id="sidebar" class="sidebar">
+        <ul class="sidebar-nav" id="sidebar-nav">
+                <a routerLink="/dashboard" class="logo d-flex align-items-center">
+                        <img src="assets/img/maritech-logo-small.png" alt="Maritech" class="logo-small">
+                        <img src="assets/img/maritech-logo-big.png" alt="Maritech" class="logo-large">
+
+                </a>
+                <!-- <li class="nav-item"> <a class="nav-link " routerLink="/"> <i class="bi bi-grid active"></i>
+                                <span>Dashboard</span> </a></li> -->
+                <li class="nav-item"> <a class="nav-link "routerLink="/ado-vault.dashboard"> <i class="bi bi-grid active"></i>
+                                <span>Dashboard</span> </a></li>
+                <!-- href="/company" -->
+                <li class="nav-item"> <a class="nav-link " routerLink="/ado-vault.backup"> <i class="bi bi-view-stacked"></i>
+                                <span>Backup</span> </a></li>
+                <li class="nav-item"> <a class="nav-link " routerLink="/ado-vault.restore"> <i
+                                        class="bi bi-arrow-counterclockwise"></i>
+                                <span>Restore</span> </a></li>
+
+                <li class="nav-item">
+                        <a class="nav-link collapsed" data-bs-target="#reports-nav" data-bs-toggle="collapse"
+                                routerLink="/ado-vault.role"> <i class="bi bi-journal-text"></i><span>Reports</span><i
+                                        class="bi bi-chevron-down ms-auto"></i> </a>
+                        <ul id="reports-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+                                <li> <a routerLink="/ado-vault.backup"> <i class="bi bi-slash-lg backup"></i><span>Backup</span>
+                                        </a></li>
+                                <li> <a routerLink="/ado-vault.restore"> <i
+                                                        class="bi bi-slash-lg restore"></i><span>Restore</span> </a>
+                                </li>
+                                <li> <a routerLink="/ado-vault.user-log"> <i class="bi bi-slash-lg userlog"></i><span>User
+                                                        Log</span> </a></li>
+
+                        </ul>
+                </li>
+                <li class="nav-item">
+                        <a class="nav-link collapsed" data-bs-target="#settings-nav" data-bs-toggle="collapse" href="#">
+                                <i class="bi bi-layout-text-window-reverse"></i><span>Settings</span><i
+                                        class="bi bi-chevron-down ms-auto"></i>
+                        </a>
+                        <ul id="settings-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+                                <li> <a routerLink="/ado-vault.role"> <i class="bi bi-slash-lg"></i><span>Role</span> </a></li>
+                                <li> <a routerLink="/ado-vault.entity"> <i class="bi bi-slash-lg"></i><span>Entity</span> </a>
+                                </li>
+                                <li> <a routerLink="/ado-vault.storage"> <i class="bi bi-slash-lg"></i><span>Storage</span> </a>
+                                </li>
+                                <li> <a routerLink="/ado-vault.integration"> <i
+                                                        class="bi bi-slash-lg"></i><span>Integration</span> </a></li>
+                                <li> <a routerLink="/ado-vault.notification"> <i
+                                                        class="bi bi-slash-lg"></i><span>Notification</span> </a></li>
+                                <li>
+                                        <a routerLink="/ado-vault.company"> <i class="bi bi-slash-lg"></i><span>Company</span>
+                                        </a>
+                                </li>
+                        </ul>
+                </li>
+
+        </ul>
+</aside>
+
+<router-outlet></router-outlet>
