@@ -1,0 +1,26 @@
+{
+  "compileOnSave": false,
+  "compilerOptions": {
+    "rootDir": ".",
+    "sourceMap": true,
+    "declaration": false,
+    "moduleResolution": "node",
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "importHelpers": true,
+    "target": "es2015",
+    "module": "esnext",
+    "lib": ["es2017", "dom"],
+    "skipLibCheck": true,
+    "skipDefaultLibCheck": true,
+    "baseUrl": ".",
+    "paths": {
+      "@ado-bcp-ui/auth-guards": ["libs/auth-guards/src/index.ts"],
+      "@ado-bcp-ui/layout": ["libs/layout/src/index.ts"],
+      "@ado-bcp-ui/login": ["libs/login/src/index.ts"],
+      "@ado-bcp-ui/shared-component": ["libs/shared-component/src/index.ts"],
+      "@ado-bcp-ui/shared-service": ["libs/shared-service/src/index.ts"]
+    }
+  },
+  "exclude": ["node_modules", "tmp"]
+}
